@@ -11,7 +11,7 @@
 * *Airflow: Workflow Orchestration
 * *dbt*: Data Modeling
 * *Spark*: Distributed Processing
-* *Kafka*: Streaming
+* *Kafka*: Streaming (Coming soon)
 
 ### Architecture diagram
 <img src="arch_1.jpg"/>
