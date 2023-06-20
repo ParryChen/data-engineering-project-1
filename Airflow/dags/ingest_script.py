@@ -7,13 +7,9 @@ import pyarrow.parquet as pq
 
 from sqlalchemy import create_engine
 
-def ingest_callable(user, password, host, port, db, table_name, parquet_file, execution_date):
+def main(table_name, parquet_file, execution_date):
+    print('connection established successfully, initializing ingestion for: ')
     print(table_name, csv_file, execution_date)
-
-    engine = create_engine(f'postgresql://{user}:{password}@{host}:{port}/{db}')
-    engine.connect()
-
-    print('connection established successfully, inserting data...')
 
     t_start = time()
 
@@ -53,3 +49,14 @@ def ingest_callable(user, password, host, port, db, table_name, parquet_file, ex
         t_end = time()
 
         print('inserted another chunk, took %.3f second' % (t_end - t_start))
+
+def connect_pg(user, password, host, port, db):
+    engine = create_engine(f'postgresql://{user}:{password}@{host}:{port}/{db}')
+    engine.connect()
+
+    print('connection established successfully')
+
+
+if __name__ == '__main__':
+
+    main()

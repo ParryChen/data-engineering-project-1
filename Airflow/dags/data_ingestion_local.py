@@ -7,7 +7,7 @@ from airflow.utils.dates import days_ago
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
 
-from ingest_script import ingest_callable
+import ingest_script
 
 
 AIRFLOW_HOME = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")
@@ -49,7 +49,7 @@ with DAG(
 
     ingest_task = PythonOperator(
         task_id="ingest",
-        python_callable=ingest_callable,
+        python_callable=ingest_script.main(),
         op_kwargs=dict(
             user=PG_USER,
             password=PG_PASSWORD,
